@@ -18,6 +18,17 @@ jobs:
         with:
           node-version: 18
 
+      - name: Debug - Localizar package.json
+        run: |
+          echo "Diretório atual:"
+          pwd
+
+          echo "Arquivos na raiz:"
+          ls -la
+
+          echo "Procurando package.json:"
+          find . -maxdepth 5 -name package.json -not -path "*/node_modules/*"
+
       - name: Install Dependencies
         run: npm install
 
