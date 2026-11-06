@@ -1,15 +1,13 @@
 name: Build iOS App
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main", "master" ]
 
 jobs:
   build-ios:
     runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: ./projeto-apk
 
     steps:
       - name: Checkout Repository
@@ -20,14 +18,21 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies & Build
-        run: |
-          npm install
-          npm run build
-          npx cap sync ios
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Install CocoaPods & Build iOS
+      - name: Build Web Assets
+        run: npm run build
+
+      - name: Add iOS Platform & Sync
+        run: npx cap sync ios
+
+      - name: Install CocoaPods
         run: |
           cd ios/App
           pod install
+
+      - name: Build iOS App (Archive)
+        run: |
+          cd ios/App
           xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
