@@ -17,23 +17,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install Dependencies
-        working-directory: ./projeto-apk
-        run: npm install
-
-      - name: Build Web Assets
-        working-directory: ./projeto-apk
-        run: npm run build
-
-      - name: Add iOS Platform & Sync
-        working-directory: ./projeto-apk
-        run: npx cap sync ios
-
-      - name: Install CocoaPods
-        working-directory: ./projeto-apk/ios/App
-        run: pod install
-
-      - name: Build iOS App (Archive)
-        working-directory: ./projeto-apk/ios/App
+      - name: Install Dependencies & Build
         run: |
+          cd projeto-apk
+          npm install
+          npm run build
+          npx cap sync ios
+
+      - name: Install CocoaPods & Build iOS
+        run: |
+          cd projeto-apk/ios/App
+          pod install
           xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
