@@ -7,9 +7,6 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: ./projeto-apk
 
     steps:
       - name: Checkout Repository
