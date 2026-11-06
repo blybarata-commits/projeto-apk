@@ -1,0 +1,9 @@
+{
+	"appId": "br.com.diario.app",
+	"appName": "Diário do Pará",
+	"webDir": "www",
+	"server": {
+		"url": "https://digital.gruporba.com.br",
+		"cleartext": true
+	}
+}

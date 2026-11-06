@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Diário do Pará</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Força o fundo da tela inteiro em preto sólido */
+    body, html { width: 100%; height: 100%; background-color: #000000 !important; display: flex; justify-content: center; align-items: center; }
+    .logo-container { text-align: center; animation: fadeIn 0.5s ease-in-out; }
+    img { width: 200px; height: auto; display: block; margin: 0 auto; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="logo_dpa.png" alt="Logo Diário do Pará">
+  </div>
+
+  <script>
+    const TARGET_URL = "https://digital.gruporba.com.br";
+
+    // Exibe a logo por 1.3 segundos no fundo preto e depois carrega o site dentro do app
+    setTimeout(function() {
+      window.location.replace(TARGET_URL);
+    }, 1300);
+  </script>
+</body>
+</html>
